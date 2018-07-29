@@ -44,6 +44,7 @@ $mediumFont : 'Roboto-Medium';
 $regularFont : 'Roboto-Regular';
 $darkblue : #139CD3;
 $lightblue: #0DA3DF;
+$greyColor : #4A4A4A;
 
 
   @font-face {
@@ -909,17 +910,60 @@ overflow: hidden;
 
 
 
-.dropDown{
+.dropDownHeader_Btn{
     position:relative;
-    background:red;
-    .contentDrop{
-      position:absolute;
-      top:40px;
-      width:100px;
-      display:block;
-      right:10px;
-      height:100px;
-      z-index:999;
-      background:yellow;
-    }
 }
+
+.contentDrop{
+    position:absolute;
+    top:70px;
+    width:auto;
+    display:none;
+    right:9px;
+    height:auto;
+    z-index:999;
+    @include border-radius(2px);
+    background: #fafafa;
+    color:$greyColor;
+    font-size: 15px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.30), 0 1px 1px rgba(0,0,0,0.0);
+    &:after{
+        content:"";
+        height:6px;
+        width:6px;
+        display:block;
+        position: absolute;
+        top:-3px;
+        right:7px;
+        background: #fafafa;
+        @include rotate(45deg);
+    }
+    ul{
+        margin:0;
+        padding:0;
+        display:block;
+        list-style: none;
+        padding:10px 20px;
+        text-align: right;
+        li{
+            margin:0;
+            padding:0;   
+            padding:5px 0;
+            display:block; 
+            span{
+                display: inline-block;
+                vertical-align: middle;
+            }
+            i{
+                display: inline-block;
+                vertical-align: middle;
+                font-size:17px;
+                position:relative;
+                top:-1px;
+                padding-left:5px;
+
+            }
+            // border-bottom:1px solid #eee;        
+        }
+    }
+  }

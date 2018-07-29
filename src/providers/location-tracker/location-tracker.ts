@@ -15,13 +15,14 @@ export class LocationTrackerProvider {
   public watch: any;
   public lat: number = 0;
   public lng: number = 0;
+
   constructor(public zone: NgZone,
     private geolocation : Geolocation,
     private backgroundGeolocation:BackgroundGeolocation,
     public missionservice :MissionsProvider ) {
     console.log('Hello LocationTrackerProvider Provider');
-
   }
+  
   startTracking(status,mission_id) {
 
     if(status==2 || status==4){
@@ -34,12 +35,11 @@ export class LocationTrackerProvider {
       };
       this.backgroundGeolocation.configure(config).subscribe((location) => {
 
-
         this.zone.run(() => {
           this.lat = location.latitude;
           this.lng = location.longitude;
         });
-        //
+    
       }, (err) => {
 
         console.log(err);
@@ -63,16 +63,15 @@ export class LocationTrackerProvider {
 
       });
     }
-
-
   }
+
+
   stopTracking() {
-    console.log('stopTracking');
+    console.log('Stop Tracking');
     this.backgroundGeolocation.finish();
     if(this.watch){
       this.watch.unsubscribe();
     }
-
-
   }
-}
+
+ } //End LocationTrackerProvider

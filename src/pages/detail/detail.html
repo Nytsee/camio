@@ -9,15 +9,20 @@
 
   <ion-navbar >
     <ion-title >{{tehRef}}</ion-title>
-    <ion-buttons end class="dropDown">
-        <button ion-button icon-only (click)="logout();">
+      <ion-buttons end>
+        <button ion-button icon-only class="dropDownHeader_Btn">
             <i class="material-icons">more_vert</i>
         </button>
-        <div class="contentDrop"></div>
-    </ion-buttons>
+      </ion-buttons>
   </ion-navbar>
 
 </ion-header>
+
+<div class="contentDrop">
+    <ul>
+        <li (click)="logout();" ><span>Se déconnecter</span> <i class="material-icons">power_settings_new</i></li>
+    </ul>
+</div>
 
 
 <ion-content>

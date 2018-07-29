@@ -19,9 +19,10 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { Geolocation } from '@ionic-native/geolocation';
 
 
+
 import { MyApp } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatFormFieldModule, MatInputModule, MatTabsModule} from '@angular/material';
+import { MatButtonModule, MatMenuModule, MatFormFieldModule, MatInputModule, MatTabsModule} from '@angular/material';
 import { AuthProvider } from '../providers/auth/auth';
 import { SplitPaneProvider } from '../providers/split-pane/split-pane';
 import { MissionsProvider } from '../providers/missions/missions';
@@ -40,7 +41,9 @@ import { SharedProvider } from '../providers/shared/shared';
     Orders,
     Missions,
     Chatlist
-
+  ], 
+  exports: [
+    MatMenuModule
   ],
   imports: [
     BrowserModule,
@@ -49,6 +52,7 @@ import { SharedProvider } from '../providers/shared/shared';
     MatFormFieldModule,
     MatInputModule,
     MatTabsModule,
+    MatMenuModule,
     CdkTableModule,
     HttpClientModule,
     HttpModule,

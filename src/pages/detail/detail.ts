@@ -84,6 +84,10 @@ export class Detail{
 
 
 
+ 
+  
+
+
   showLoading() {
    this.loading = this.loadingCtrl.create({
       content: 'Chargement...'
@@ -96,11 +100,12 @@ export class Detail{
 
   updateMsgStatus(statusID,id_detail){
     
-    if((this.id_activeOrder==id_detail) && (statusID==2 || statusID==4)){
+    if((id_detail == this.id_activeOrder) && (statusID==2 || statusID==4)){
       this.tracker.startTracking(statusID,id_detail);
     }else{
       this.tracker.stopTracking();
     }
+
     this.Status = statusID;
     this.StatusInfos.StatusIcon = this.MsgStatus[statusID][0];
     this.StatusInfos.StatusMsg = this.MsgStatus[statusID][1];
@@ -229,6 +234,14 @@ export class Detail{
       console.log('ionViewDidLoad DetailPage');
       this.animateBoxs()
       $(".readMoreDetail span:eq(1)").hide();
+      $(".dropDownHeader_Btn").click(function(){
+        if($(".contentDrop").is(":visible")){
+          $(".contentDrop").hide();
+        }else{
+          $(".contentDrop").show();
+        }
+        
+      });
   }
 
 
@@ -274,9 +287,6 @@ export class Detail{
 
       });
     }
-
-
-
   }
 
     public logout(){

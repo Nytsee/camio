@@ -78,6 +78,7 @@ export class Orders {
     console.log('ionViewDidLoad OrdersPage');
     this.getOrders();
   }
+  
 
   ionViewDidEnter() {
     console.log('ionViewDidEnter OrdersPage');
