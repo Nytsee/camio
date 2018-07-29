@@ -38,7 +38,7 @@ export class Orders {
   userPosLat:number;
   userPosLng:number;
 
-  public TabNameOn:string;
+  public TabIndex:number;
 
 
 
@@ -154,7 +154,7 @@ getOrders(refResher?){
 
 
       this.CurrentActiveOrder = this.missionsList[0];
-      this.getUserPosition();
+      //this.getUserPosition();
       console.log("Current Active Order"+JSON.stringify(this.CurrentActiveOrder))
       console.log("Sorted Missions : "+JSON.stringify(this.missionsList))
 
@@ -170,7 +170,6 @@ getOrders(refResher?){
         refResher.complete();
         },800)
       }
-      this.TabNameOn = "orders";
   });
 
 
@@ -319,9 +318,8 @@ getUserPosition(){
 reloadMap(){
   setTimeout(() => {
   this.getUserPosition();
-  this.TabNameOn = "map";
-  },100)
-  console.log("Map reloaded")
+  },0)
+  console.log("########## Map reloaded ###########")
 }
 
 
@@ -329,9 +327,6 @@ reloadMap(){
        console.log("TOTAL MARKERS : "+Markers.length)
   }
 
-  setTabName(Tabname){
-    this.TabNameOn = Tabname;
-  }
 
 
   doRefresh(refresher) {
@@ -340,6 +335,13 @@ reloadMap(){
     console.log('Begin async operation', refresher);
   }
 
+  getIdxTab(tabIdx){
+    console.log("Index tab : "+tabIdx.index);
+    this.TabIndex = tabIdx.index;
+    if(this.TabIndex == 1){
+      this.getUserPosition();
+    }
+  }
  
   
 }
