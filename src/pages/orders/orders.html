@@ -16,8 +16,15 @@
 
 <ion-content>
 
-
-
+   
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+          pullingIcon="arrow-dropdown"
+          pullingText="Tirer pour recharger"
+          refreshingSpinner="crescent"
+          refreshingText="Chargement...">
+        </ion-refresher-content>
+      </ion-refresher>
 
 
   <mat-card>
@@ -108,7 +115,7 @@
 
 <mat-tab label="Map">
       <ng-template mat-tab-label>
-        <i class="material-icons md-20">map</i><br>Map
+        <i class="material-icons md-20" (click)="reloadMap()" >map</i><br>Map
       </ng-template>
 
         <div #map id="map" [style.height]="heightMapView">

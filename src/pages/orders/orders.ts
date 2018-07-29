@@ -38,6 +38,8 @@ export class Orders {
   userPosLat:number;
   userPosLng:number;
 
+  public TabNameOn:string;
+
 
 
 
@@ -49,6 +51,8 @@ export class Orders {
 
   @ViewChild('map') mapElement: ElementRef;
   @ViewChild('currentHeader') thetopPart: ElementRef;
+  @ViewChild('refresherDIV') refresherDIV: ElementRef;
+  
 
   IconMission:any = [
     ["pan_tool"],
@@ -124,7 +128,7 @@ export class Orders {
   }
 
 
-getOrders(){
+getOrders(refResher?){
 
   this.missionservice.getMissions().subscribe((data)=>{
     if(data) {
@@ -160,6 +164,13 @@ getOrders(){
     }
 
       console.log(this.missionsList);
+
+      if(refResher){
+        setTimeout(() => {
+        refResher.complete();
+        },800)
+      }
+      this.TabNameOn = "orders";
   });
 
 
@@ -192,8 +203,15 @@ getOrders(){
         console.log("POS INIT MAP : "+this.userPosLat +" ..... "+this.userPosLng);
 
         this.map = new google.maps.Map(this.mapElement.nativeElement, {
-          zoom: 13,
-          center: {lat: this.CurrentLat, lng: this.CurrentLan}
+          zoom: 15,
+          panControl: true,
+          zoomControl: true,
+          mapTypeControl: true,
+          scaleControl: true,
+          streetViewControl: true,
+          overviewMapControl: true,
+          rotateControl: true,
+          center: {lat: this.userPosLat, lng: this.userPosLng}
         });
         
 
@@ -217,8 +235,6 @@ getOrders(){
      
         for(let ii=0 ; ii < this.Markers.length; ii++){
           if(ii == 2){
-
-         
           //console.log(this.Markers[ii].lan+" / "+ii+" / "+ this.Markers[ii].info)
           let icon = {
             url: this.Markers[ii].icon , // url
@@ -230,8 +246,8 @@ getOrders(){
           let marker = new google.maps.Marker({
           map: this.map,
           animation: google.maps.Animation.DROP,
-          position: {lat: this.Markers[ii].lan, lng: this.Markers[ii].lng},
-          icon: icon
+          position: {lat: this.Markers[ii].lan, lng: this.Markers[ii].lng}
+          //icon: icon
           });
 
           let content = "<div class='infoWindow'><p>"+this.Markers[ii].info+"</p></div>";
@@ -295,15 +311,35 @@ getOrders(){
   }
 
 
-  getUserPosition(){
+getUserPosition(){
     this.initMap();
     this.AdjustMapHeight();
+}
+
+reloadMap(){
+  setTimeout(() => {
+  this.getUserPosition();
+  this.TabNameOn = "map";
+  },100)
+  console.log("Map reloaded")
 }
 
 
   addMarker(Markers){
        console.log("TOTAL MARKERS : "+Markers.length)
   }
+
+  setTabName(Tabname){
+    this.TabNameOn = Tabname;
+  }
+
+
+  doRefresh(refresher) {
+    let refResh = refresher;
+    this.getOrders(refResh);
+    console.log('Begin async operation', refresher);
+  }
+
  
   
 }
