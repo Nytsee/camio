@@ -2,12 +2,18 @@ import { Component, ViewChild ,ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams,ToastController, Platform } from 'ionic-angular';
 import { MissionsProvider } from './../../providers/missions/missions';
 import { Detail } from '../detail/detail';
+import { Login } from '../login/login';
 import { Geolocation ,GeolocationOptions ,Geoposition ,PositionError } from '@ionic-native/geolocation';
 
+import  $ from 'jquery';
+import {TweenMax} from 'gsap';
+import { Events } from 'ionic-angular';
 
+declare var Power1,Bounce,Elastic: any;
 
 declare var google;
 declare var offsetHeight;
+
 
 
 /**
@@ -81,6 +87,13 @@ export class Orders {
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrdersPage');
     this.getOrders();
+    $(".dropDownHeader_Btn").click(function(){
+      if($(".contentDrop").is(":visible")){
+        $(".contentDrop").hide();
+      }else{
+        $(".contentDrop").show();
+      }
+    });
   }
   
 
@@ -154,6 +167,10 @@ getOrders(refResher?){
 
 
       this.CurrentActiveOrder = this.missionsList[0];
+      //We check for status order to send position coordinates for 2 and 5 
+      if(this.CurrentActiveOrder.status == 8 ){
+        this.missionservice.sendPosition();
+      }
       //this.getUserPosition();
       console.log("Current Active Order"+JSON.stringify(this.CurrentActiveOrder))
       console.log("Sorted Missions : "+JSON.stringify(this.missionsList))
@@ -343,6 +360,11 @@ reloadMap(){
     }
   }
  
+  public logout(){
+    console.log("deconnexion")
+    localStorage.clear();
+    this.navCtrl.push(Login);
+  }
   
 }
 

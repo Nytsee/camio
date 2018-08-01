@@ -31,7 +31,7 @@ export class LocationTrackerProvider {
         stationaryRadius: 20,
         distanceFilter: 10,
         debug: true,
-        interval: 2000
+        interval: 30
       };
       this.backgroundGeolocation.configure(config).subscribe((location) => {
 
@@ -47,13 +47,13 @@ export class LocationTrackerProvider {
       });
       this.backgroundGeolocation.start();
       let options = {
-        frequency: 3000,
+        frequency: 30,
         enableHighAccuracy: true
       };
         this.watch = this.geolocation.watchPosition(options).filter((p: any) => p.code === undefined).subscribe((position: Geoposition) => {
 
         console.log(position);
-        console.log('BackgroundGeolocation:  ' + position.coords.latitude + ',' + position.coords.longitude);
+        console.log('Background Geolocation:  ' + position.coords.latitude + ',' + position.coords.longitude);
         this.missionservice.setLocation(mission_id,position.coords.latitude,position.coords.longitude);
         // Run update inside of Angular's zone
         this.zone.run(() => {

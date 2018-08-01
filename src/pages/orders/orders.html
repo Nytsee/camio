@@ -9,10 +9,19 @@
 
   <ion-navbar hideBackButton="true">
     <ion-title>Liste des missions</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only class="dropDownHeader_Btn">
+          <i class="material-icons">more_vert</i>
+      </button>
+    </ion-buttons>    
   </ion-navbar>
 
 </ion-header>
-
+<div class="contentDrop">
+  <ul>
+      <li (click)="logout();" ><span>Se déconnecter</span> <i class="material-icons">power_settings_new</i></li>
+  </ul>
+</div>
 
 <ion-content>
 

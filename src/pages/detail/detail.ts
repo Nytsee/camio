@@ -240,7 +240,6 @@ export class Detail{
         }else{
           $(".contentDrop").show();
         }
-        
       });
   }
 

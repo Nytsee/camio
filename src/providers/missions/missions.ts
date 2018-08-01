@@ -39,18 +39,18 @@ export class MissionsProvider {
      });
 
      this.loading.present();
-
    }
 
+
   getMissions(){
-      return  this.http.get(this.getApiUrl+'?user_id='+localStorage.getItem('id'))
+      return  this.http.get('http://app.camiohub.com/apiweb/beta/missions/list?user_id='+localStorage.getItem('id'))
             .map((data : Response ) => data.json())
             .do((res : Response ) => console.log(''))
            ;
   }
-  setLocation(id,lang,lat){
-    console.log("appel webservice groloclisation :"+this.getApiUrlGeo+'geo?lat='+lat+'&lon='+lang+'&user_id='+localStorage.getItem('id')+"&mission_id="+id)
-    return  this.http.get(this.getApiUrlGeo+'geo?lat='+lat+'&lon='+lang+'&user_id='+localStorage.getItem('id')+"&mission_id="+id)
+  setLocation(id,lat,lng){
+    //console.log("appel webservice groloclisation :"+this.getApiUrlGeo+'geo?lat='+lat+'&lon='+lng+'&user_id='+localStorage.getItem('id')+"&mission_id="+id)
+    return  this.http.get(this.getApiUrlGeo+'geo?lat='+lat+'&lon='+lng+'&user_id='+localStorage.getItem('id')+"&mission_id="+id)
     .map((data : Response ) => data.json())
     .do((res : Response ) => console.log(''))
    ;
@@ -173,9 +173,17 @@ export class MissionsProvider {
       console.log(error.json());
     });
 
+ 
+ 
+  }
 
-
-
+speed = 0;
+sendPosition(){
+  setInterval(() => {
+      this.speed += 2; 
+      console.log
+      console.log('Current position for 2 and 4 position : ' + this.speed);
+    }, 1000);
   }
 
 }

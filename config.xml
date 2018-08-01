@@ -93,5 +93,8 @@
         <variable name="ACCOUNT_TYPE" value="$PACKAGE_NAME.account" />
         <variable name="CONTENT_AUTHORITY" value="$PACKAGE_NAME" />
     </plugin>
-    <plugin name="cordova-plugin-fcm" spec="^2.1.2" />
+    <plugin name="cordova-android-play-services-gradle-release" spec="^1.4.3">
+        <variable name="PLAY_SERVICES_VERSION" value="15.+" />
+    </plugin>
+    <engine name="android" spec="^7.1.1" />
 </widget>

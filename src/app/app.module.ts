@@ -17,6 +17,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { CdkTableModule } from '@angular/cdk/table';
 import { Geolocation } from '@ionic-native/geolocation';
+// import { FCM } from '@ionic-native/fcm';
 
 
 
@@ -93,6 +94,7 @@ import { SharedProvider } from '../providers/shared/shared';
     SplitPaneProvider,
     MissionsProvider,
     Push,
+    // FCM,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SharedProvider,
   ],

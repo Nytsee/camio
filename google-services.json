@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "655405484247",
-    "firebase_url": "https://camiohub.firebaseio.com",
-    "project_id": "camiohub",
-    "storage_bucket": "camiohub.appspot.com"
+    "project_number": "31456540180",
+    "firebase_url": "https://camioapp.firebaseio.com",
+    "project_id": "camioapp",
+    "storage_bucket": "camioapp.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:655405484247:android:0871de49713303de",
+        "mobilesdk_app_id": "1:31456540180:android:ea61ecf491edd37f",
         "android_client_info": {
-          "package_name": "com.camiohub.com"
+          "package_name": "com.nytsee.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "655405484247-7ev3kkv1q2pe0v7kptu2tr8gcvpr3pij.apps.googleusercontent.com",
+          "client_id": "31456540180-mrh33mphplbcpgglem60tkh63p21t5kj.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA2pvBO98Sm3MbI4dTKhqAdryieArgP8GE"
+          "current_key": "AIzaSyC4ChcBkZrwn7Q_Cq8k4ZDUcJudkmNIpsk"
         }
       ],
       "services": {
