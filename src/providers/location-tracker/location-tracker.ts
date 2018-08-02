@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, NgZone } from '@angular/core';
-import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation';
 import { MissionsProvider } from './../missions/missions';
+import { BackgroundGeolocation, BackgroundGeolocationConfig, BackgroundGeolocationResponse } from '@ionic-native/background-geolocation';
 import 'rxjs/add/operator/filter';
 /*
   Generated class for the LocationTrackerProvider provider.
@@ -22,19 +21,21 @@ export class LocationTrackerProvider {
     public missionservice :MissionsProvider ) {
     console.log('Hello LocationTrackerProvider Provider');
   }
+
+  
   
   startTracking(status,mission_id) {
-
+     console.log("status traker : "+status)
     if(status==2 || status==4){
+      console.log('Inside Traker !!');
       let config = {
         desiredAccuracy: 0,
-        stationaryRadius: 20,
-        distanceFilter: 10,
+        stationaryRadius: 0,
+        distanceFilter: 0,
         debug: true,
-        interval: 30
+        interval: 3
       };
       this.backgroundGeolocation.configure(config).subscribe((location) => {
-
         this.zone.run(() => {
           this.lat = location.latitude;
           this.lng = location.longitude;
@@ -47,7 +48,7 @@ export class LocationTrackerProvider {
       });
       this.backgroundGeolocation.start();
       let options = {
-        frequency: 30,
+        frequency: 3,
         enableHighAccuracy: true
       };
         this.watch = this.geolocation.watchPosition(options).filter((p: any) => p.code === undefined).subscribe((position: Geoposition) => {
@@ -69,6 +70,7 @@ export class LocationTrackerProvider {
   stopTracking() {
     console.log('Stop Tracking');
     this.backgroundGeolocation.finish();
+    localStorage.setItem('trackIt', "0" );
     if(this.watch){
       this.watch.unsubscribe();
     }

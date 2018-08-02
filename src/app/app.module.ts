@@ -17,6 +17,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { CdkTableModule } from '@angular/cdk/table';
 import { Geolocation } from '@ionic-native/geolocation';
+import { BackgroundGeolocation, BackgroundGeolocationConfig, BackgroundGeolocationResponse } from '@ionic-native/background-geolocation';
+import { LocationTrackerProvider } from '../providers/location-tracker/location-tracker';
 // import { FCM } from '@ionic-native/fcm';
 
 
@@ -27,8 +29,6 @@ import { MatButtonModule, MatMenuModule, MatFormFieldModule, MatInputModule, Mat
 import { AuthProvider } from '../providers/auth/auth';
 import { SplitPaneProvider } from '../providers/split-pane/split-pane';
 import { MissionsProvider } from '../providers/missions/missions';
-import { LocationTrackerProvider } from '../providers/location-tracker/location-tracker';
-import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
 import { Push } from '../../node_modules/@ionic-native/push';
 import { SharedProvider } from '../providers/shared/shared';
 @NgModule({
@@ -88,11 +88,11 @@ import { SharedProvider } from '../providers/shared/shared';
     StatusBar,
     SplashScreen,
     AuthProvider,
-    LocationTrackerProvider,
-    BackgroundGeolocation,
     Geolocation,
+    BackgroundGeolocation,
     SplitPaneProvider,
     MissionsProvider,
+    LocationTrackerProvider,
     Push,
     // FCM,
     {provide: ErrorHandler, useClass: IonicErrorHandler},

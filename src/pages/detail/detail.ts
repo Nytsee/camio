@@ -9,7 +9,6 @@ import { IonicPage, NavController, NavParams, ToastController, LoadingController
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { ThrowStmt } from '@angular/compiler/src/output/output_ast';
 import { MissionsProvider } from './../../providers/missions/missions';
-import { LocationTrackerProvider } from './../../providers/location-tracker/location-tracker';
 import { Login } from '../login/login';
 
 
@@ -70,8 +69,7 @@ export class Detail{
     public missionservice :MissionsProvider,
     private toastCtrl:ToastController,
     public events: Events,
-    public loadingCtrl: LoadingController,
-    public tracker:LocationTrackerProvider
+    public loadingCtrl: LoadingController
   ) {
     let id_detail = navParams.get('id_detail');
     this.id_activeOrder = navParams.get('id_activeOrder');
@@ -101,9 +99,9 @@ export class Detail{
   updateMsgStatus(statusID,id_detail){
     
     if((id_detail == this.id_activeOrder) && (statusID==2 || statusID==4)){
-      this.tracker.startTracking(statusID,id_detail);
+      localStorage.setItem('trackIt', "1");
     }else{
-      this.tracker.stopTracking();
+      localStorage.setItem('trackIt', "0" );
     }
 
     this.Status = statusID;

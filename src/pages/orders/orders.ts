@@ -1,6 +1,7 @@
 import { Component, ViewChild ,ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams,ToastController, Platform } from 'ionic-angular';
 import { MissionsProvider } from './../../providers/missions/missions';
+
 import { Detail } from '../detail/detail';
 import { Login } from '../login/login';
 import { Geolocation ,GeolocationOptions ,Geoposition ,PositionError } from '@ionic-native/geolocation';
@@ -8,6 +9,7 @@ import { Geolocation ,GeolocationOptions ,Geoposition ,PositionError } from '@io
 import  $ from 'jquery';
 import {TweenMax} from 'gsap';
 import { Events } from 'ionic-angular';
+import { LocationTrackerProvider } from '../../providers/location-tracker/location-tracker';
 
 declare var Power1,Bounce,Elastic: any;
 
@@ -76,7 +78,8 @@ export class Orders {
     private toastCtrl:ToastController,
     public platform: Platform,
     public missionservice :MissionsProvider,
-    private geolocation : Geolocation) {
+    private geolocation : Geolocation,
+    private tracker : LocationTrackerProvider) {
       console.log("Constructor")
   }
 
@@ -168,8 +171,9 @@ getOrders(refResher?){
 
       this.CurrentActiveOrder = this.missionsList[0];
       //We check for status order to send position coordinates for 2 and 5 
-      if(this.CurrentActiveOrder.status == 8 ){
-        this.missionservice.sendPosition();
+      if((this.CurrentActiveOrder.status == 2 || this.CurrentActiveOrder.status == 4) && localStorage.getItem('trackIt') == "1"){
+        //this.missionservice.sendPosition();
+        this.tracker.startTracking(this.CurrentActiveOrder.status,this.CurrentActiveOrder.id)
       }
       //this.getUserPosition();
       console.log("Current Active Order"+JSON.stringify(this.CurrentActiveOrder))

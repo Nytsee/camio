@@ -2,7 +2,6 @@
 import { Injectable } from '@angular/core';
 import { Http ,Response ,URLSearchParams} from '@angular/http';
 import { LoadingController } from 'ionic-angular';
-import { LocationTrackerProvider } from './../location-tracker/location-tracker';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
